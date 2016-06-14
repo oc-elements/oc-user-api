@@ -2,7 +2,7 @@
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 <link rel="import" href="../oc-core-utils/oc-api-provider-behaviour.html">
 
-<dom-module id="oc-users-api">
+<dom-module id="oc-user-api">
 
   <template>
     <iron-ajax id="getLoggedInUser"></iron-ajax>
@@ -11,7 +11,7 @@
   <script>
     (function () {
       Polymer({
-        is: 'oc-users-api',
+        is: 'oc-user-api',
         behaviors: [OC.Behaviours.ApiProvider],
 
         /**
