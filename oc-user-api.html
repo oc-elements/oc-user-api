@@ -22,6 +22,35 @@
         getLoggedInUser: function() {
           this.$.getLoggedInUser.url = this._url('users/logged_in');
           return this._generateRequest(this.$.getLoggedInUser);
+        },
+
+        /**
+         * Get the Lats/Longs for an address
+         *
+         * @param {{ String, name: String, streetNumber: String, streetName: String, complex: String, suburb: String, city: String, postalCode: String, province: String, country: String }} address
+         * @return {Promise}
+         */
+        getGeoLocation: function(address) {
+          this.$.getGeoLocation.url = this._url('users/geocode');
+          this.$.getGeoLocation.method = "PUT";
+          this.$.getGeoLocation.contentType = "application/json";
+          this.$.getGeoLocation.body =
+          {
+            latitude: null,
+            name: address.name,
+            streetNumber: address.streetNumber,
+            streetName: address.streetName,
+            complex: address.complex,
+            suburb: address.suburb,
+            city: address.city,
+            postalCode: address.postalCode,
+            note: null,
+            favourite: false,
+            id: 0,
+            enabled: false,
+            longitude: null
+          };
+          return this._generateRequest(this.$.getGeoLocation);
         }
 
       });
