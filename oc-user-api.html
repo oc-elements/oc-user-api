@@ -7,6 +7,7 @@
   <template>
     <iron-ajax id="getLoggedInUser"></iron-ajax>
     <iron-ajax id="getGeoLocation"></iron-ajax>
+    <iron-ajax id="getProfile"></iron-ajax>
   </template>
 
   <script>
@@ -23,6 +24,16 @@
         getLoggedInUser: function() {
           this.$.getLoggedInUser.url = this._url('users/logged_in');
           return this._generateRequest(this.$.getLoggedInUser);
+        },
+
+        /**
+         * Get a user's profile
+         *
+         * @returns {Promise}
+         */
+        getProfile: function(userId) {
+          this.$.getProfile.url = this._url('/users/'+userId+'/profile');
+          return this._generateRequest(this.$.getProfile);
         },
 
         /**
