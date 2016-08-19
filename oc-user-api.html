@@ -8,6 +8,7 @@
     <iron-ajax id="getLoggedInUser"></iron-ajax>
     <iron-ajax id="getGeoLocation"></iron-ajax>
     <iron-ajax id="getProfile"></iron-ajax>
+    <iron-ajax id="createAccount"></iron-ajax>
     <iron-ajax id="updateProfile"></iron-ajax>
   </template>
 
@@ -64,6 +65,22 @@
             longitude: null
           };
           return this._generateRequest(this.$.getGeoLocation);
+        },
+
+        /**
+         * Create User account
+         *
+         * @param {{ String, userId : string }} userId
+         * @param {{ Object, cellphoneNumber: String, email: String, firstName: String, nickName: String, sex: String, surname: String }} userProfileData
+         * @return {Promise}
+         */
+        createAccount: function(params) {
+          this.$.createAccount.url = this._url('users/');
+          this.$.createAccount.method = "POST";
+          this.$.createAccount.contentType = "application/json";
+          this.$.createAccount.body = params;
+
+          return this._generateRequest(this.$.createAccount);
         },
 
 
