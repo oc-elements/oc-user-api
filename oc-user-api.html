@@ -34,7 +34,7 @@
          * @returns {Promise}
          */
         getProfile: function(userId) {
-          this.$.getProfile.url = this._url('/users/'+userId+'/profile');
+          this.$.getProfile.url = this._url('users/'+userId+'/profile');
           return this._generateRequest(this.$.getProfile);
         },
 
@@ -93,7 +93,7 @@
          */
         updateProfile: function(userId, userProfileData) {
           var _data = userProfileData;
-          this.$.updateProfile.url = this._url('/users/'+userId+'/profile');
+          this.$.updateProfile.url = this._url('users/'+userId+'/profile');
           this.$.updateProfile.method = "PUT";
           this.$.updateProfile.contentType = "application/json";
           this.$.updateProfile.body =
