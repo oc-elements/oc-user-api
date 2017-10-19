@@ -4,119 +4,117 @@
 
 <dom-module id="oc-user-api">
   <template>
-    <template>
-      <iron-ajax id="getLoggedInUser"></iron-ajax>
-      <iron-ajax id="getGeoLocation"></iron-ajax>
-      <iron-ajax id="getProfile"></iron-ajax>
-      <iron-ajax id="createAccount"></iron-ajax>
-      <iron-ajax id="updateProfile"></iron-ajax>
-    </template>
+    <iron-ajax id="getLoggedInUser"></iron-ajax>
+    <iron-ajax id="getGeoLocation"></iron-ajax>
+    <iron-ajax id="getProfile"></iron-ajax>
+    <iron-ajax id="createAccount"></iron-ajax>
+    <iron-ajax id="updateProfile"></iron-ajax>
   </template>
 
   <script>
-    /**
-     * `oc-user-api`
-     * Ordercloud User calls
-     *
-     * @customElement
-     * @polymer
-     * @demo demo/index.html
-     */
-    class OcUserApi extends Ordercloud.ApiMixin(Polymer.Element) {
-        static get is() { return 'oc-user-api'; }
+      /**
+       * `oc-user-api`
+       * Ordercloud User calls
+       *
+       * @customElement
+       * @polymer
+       * @demo demo/index.html
+       */
+      class OcUserApi extends Ordercloud.ApiMixin(Polymer.Element) {
+          static get is() { return 'oc-user-api'; }
 
-        /**
-         * Get the currently logged in user
-         *
-         * @returns {Promise}
-         */
-        getLoggedInUser() {
-            this.$.getLoggedInUser.url = 'users/logged_in';
-            return this._generateRequest(this.$.getLoggedInUser);
-        }
+          /**
+           * Get the currently logged in user
+           *
+           * @returns {Promise}
+           */
+          getLoggedInUser() {
+              this.$.getLoggedInUser.url = 'users/logged_in';
+              return this._generateRequest(this.$.getLoggedInUser);
+          }
 
-        /**
-         * Get a user's profile
-         *
-         * @returns {Promise}
-         */
-        getProfile(userId) {
-            this.$.getProfile.url = 'users/'+userId+'/profile';
-            return this._generateRequest(this.$.getProfile);
-        }
+          /**
+           * Get a user's profile
+           *
+           * @returns {Promise}
+           */
+          getProfile(userId) {
+              this.$.getProfile.url = 'users/'+userId+'/profile';
+              return this._generateRequest(this.$.getProfile);
+          }
 
-        /**
-         * Get the Lats/Longs for an address
-         *
-         * @param {{ String, name: String, streetNumber: String, streetName: String, complex: String, suburb: String, city: String, postalCode: String, province: String, country: String }} address
-         * @return {Promise}
-         */
-        getGeoLocation(address) {
-            this.$.getGeoLocation.url = 'users/geocode';
-            this.$.getGeoLocation.method = "PUT";
-            this.$.getGeoLocation.contentType = "application/json";
-            this.$.getGeoLocation.body =
-                {
-                    latitude: null,
-                    name: address.name,
-                    streetNumber: address.streetNumber,
-                    streetName: address.streetName,
-                    complex: address.complex,
-                    suburb: address.suburb,
-                    city: address.city,
-                    postalCode: address.postalCode,
-                    note: null,
-                    favourite: false,
-                    id: 0,
-                    enabled: false,
-                    longitude: null
-                };
-            return this._generateRequest(this.$.getGeoLocation);
-        }
+          /**
+           * Get the Lats/Longs for an address
+           *
+           * @param {{ String, name: String, streetNumber: String, streetName: String, complex: String, suburb: String, city: String, postalCode: String, province: String, country: String }} address
+           * @return {Promise}
+           */
+          getGeoLocation(address) {
+              this.$.getGeoLocation.url = 'users/geocode';
+              this.$.getGeoLocation.method = "PUT";
+              this.$.getGeoLocation.contentType = "application/json";
+              this.$.getGeoLocation.body =
+                  {
+                      latitude: null,
+                      name: address.name,
+                      streetNumber: address.streetNumber,
+                      streetName: address.streetName,
+                      complex: address.complex,
+                      suburb: address.suburb,
+                      city: address.city,
+                      postalCode: address.postalCode,
+                      note: null,
+                      favourite: false,
+                      id: 0,
+                      enabled: false,
+                      longitude: null
+                  };
+              return this._generateRequest(this.$.getGeoLocation);
+          }
 
-        /**
-         * Create User account
-         *
-         * @param {{ String, userId : string }} userId
-         * @param {{ Object, cellphoneNumber: String, email: String, firstName: String, nickName: String, sex: String, surname: String }} userProfileData
-         * @return {Promise}
-         */
-        createAccount(params) {
-            this.$.createAccount.url = 'users/';
-            this.$.createAccount.method = "POST";
-            this.$.createAccount.contentType = "application/json";
-            this.$.createAccount.body = params;
+          /**
+           * Create User account
+           *
+           * @param {{ String, userId : string }} userId
+           * @param {{ Object, cellphoneNumber: String, email: String, firstName: String, nickName: String, sex: String, surname: String }} userProfileData
+           * @return {Promise}
+           */
+          createAccount(params) {
+              this.$.createAccount.url = 'users/';
+              this.$.createAccount.method = "POST";
+              this.$.createAccount.contentType = "application/json";
+              this.$.createAccount.body = params;
 
-            return this._generateRequest(this.$.createAccount);
-        }
+              return this._generateRequest(this.$.createAccount);
+          }
 
 
-        /**
-         * Update user's profile information
-         *
-         * @param {{ String, userId : string }} userId
-         * @param {{ Object, cellphoneNumber: String, email: String, firstName: String, nickName: String, sex: String, surname: String }} userProfileData
-         * @return {Promise}
-         */
-        updateProfile(userId, userProfileData) {
-            var _data = userProfileData;
-            this.$.updateProfile.url = 'users/'+userId+'/profile';
-            this.$.updateProfile.method = "PUT";
-            this.$.updateProfile.contentType = "application/json";
-            this.$.updateProfile.body =
-                {
-                    cellphoneNumber: _data.cellphoneNumber,
-                    email:_data.email,
-                    firstName: _data.firstName,
-                    nickName: _data.nickName,
-                    sex: _data.sex,
-                    surname:_data.surname
-                };
+          /**
+           * Update user's profile information
+           *
+           * @param {{ String, userId : string }} userId
+           * @param {{ Object, cellphoneNumber: String, email: String, firstName: String, nickName: String, sex: String, surname: String }} userProfileData
+           * @return {Promise}
+           */
+          updateProfile(userId, userProfileData) {
+              var _data = userProfileData;
+              this.$.updateProfile.url = 'users/'+userId+'/profile';
+              this.$.updateProfile.method = "PUT";
+              this.$.updateProfile.contentType = "application/json";
+              this.$.updateProfile.body =
+                  {
+                      cellphoneNumber: _data.cellphoneNumber,
+                      email:_data.email,
+                      firstName: _data.firstName,
+                      nickName: _data.nickName,
+                      sex: _data.sex,
+                      surname:_data.surname
+                  };
 
-            return this._generateRequest(this.$.updateProfile);
-        }
-    }
+              return this._generateRequest(this.$.updateProfile);
+          }
+      }
 
-    window.customElements.define(OcUserApi.is, OcUserApi);
+      window.customElements.define(OcUserApi.is, OcUserApi);
   </script>
 </dom-module>
