@@ -31,7 +31,7 @@
          * @returns {Promise}
          */
         getLoggedInUser() {
-            this.$.getLoggedInUser.url = this._url('users/logged_in');
+            this.$.getLoggedInUser.url = 'users/logged_in);
             return this._generateRequest(this.$.getLoggedInUser);
         }
 
@@ -41,7 +41,7 @@
          * @returns {Promise}
          */
         getProfile(userId) {
-            this.$.getProfile.url = this._url('users/'+userId+'/profile');
+            this.$.getProfile.url = 'users/'+userId+'/profile';
             return this._generateRequest(this.$.getProfile);
         }
 
@@ -52,7 +52,7 @@
          * @return {Promise}
          */
         getGeoLocation(address) {
-            this.$.getGeoLocation.url = this._url('users/geocode');
+            this.$.getGeoLocation.url = 'users/geocode';
             this.$.getGeoLocation.method = "PUT";
             this.$.getGeoLocation.contentType = "application/json";
             this.$.getGeoLocation.body =
@@ -82,7 +82,7 @@
          * @return {Promise}
          */
         createAccount(params) {
-            this.$.createAccount.url = this._url('users/');
+            this.$.createAccount.url = 'users/';
             this.$.createAccount.method = "POST";
             this.$.createAccount.contentType = "application/json";
             this.$.createAccount.body = params;
@@ -100,7 +100,7 @@
          */
         updateProfile(userId, userProfileData) {
             var _data = userProfileData;
-            this.$.updateProfile.url = this._url('users/'+userId+'/profile');
+            this.$.updateProfile.url = 'users/'+userId+'/profile';
             this.$.updateProfile.method = "PUT";
             this.$.updateProfile.contentType = "application/json";
             this.$.updateProfile.body =
