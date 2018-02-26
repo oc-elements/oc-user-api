@@ -97,7 +97,7 @@
            * @return {Promise}
            */
           updateProfile(userId, userProfileData) {
-              var _data = userProfileData;
+              var _data = userProfileData.profile;
               this.$.updateProfile.url = this._generateUrl('users/'+userId+'/profile');
               this.$.updateProfile.method = "PUT";
               this.$.updateProfile.contentType = "application/json";
