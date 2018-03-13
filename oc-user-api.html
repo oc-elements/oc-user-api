@@ -9,6 +9,8 @@
     <iron-ajax id="getProfile"></iron-ajax>
     <iron-ajax id="createAccount"></iron-ajax>
     <iron-ajax id="updateProfile"></iron-ajax>
+    <iron-ajax id="searchUser"></iron-ajax>
+
   </template>
 
   <script>
@@ -113,6 +115,11 @@
 
               return this._generateRequest(this.$.updateProfile);
           }
+
+		  searchUser(email, mobile) {
+			  this.$.searchUser.url = this._generateUrl(`users/search?email=${email}&mobile=${mobile}`);
+			  return this._generateRequest(this.$.searchUser);
+		  }
       }
 
       window.customElements.define(OcUserApi.is, OcUserApi);
